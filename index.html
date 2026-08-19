@@ -3,807 +3,593 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amanda Kavirathna — E-Learning Developer &amp; LMS Specialist</title>
+<title>Amanda Kavirathna — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F5F6F3;
-    --bg-alt:#ECEEE9;
-    --ink:#1B2430;
-    --ink-soft:#525B66;
-    --teal:#2F6F63;
-    --teal-soft:#DCE8E4;
-    --gold:#B8862B;
-    --gold-soft:#F1E6CC;
-    --slate:#35507A;
-    --coral:#C15B45;
-    --coral-soft:#F3DED8;
-    --sky:#3574A5;
-    --sky-soft:#DBE9F2;
-    --plum:#7A4F7E;
-    --plum-soft:#EADCEA;
-    --line:#DBDDD6;
-    --display: 'Space Grotesk', sans-serif;
-    --body: 'IBM Plex Sans', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
+    --bg:#12151C;
+    --panel:#1A1E28;
+    --panel-2:#20242F;
+    --ink:#F4F2EC;
+    --ink-soft:#9BA1B0;
+    --mint:#5EEAD4;
+    --coral:#FF6B5B;
+    --sun:#FFD166;
+    --lilac:#B98CE3;
+    --line:#2A2F3B;
+    --display:'Space Grotesk', sans-serif;
+    --body:'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
   }
-
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html,body{height:100%;}
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--body);
-    line-height:1.55;
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--body); overflow:hidden;
     -webkit-font-smoothing:antialiased;
   }
-
   a{color:inherit;}
-
-  /* ---- Progress bar ---- */
-  .progress-track{
-    position:fixed; top:0; left:0; right:0; height:4px;
-    background:var(--line); z-index:100;
-  }
-  .progress-fill{
-    height:100%; width:0%;
-    background:linear-gradient(90deg, var(--teal), var(--gold));
-    transition:width .08s linear;
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
   }
 
-  /* ---- Module nav ---- */
-  .module-nav{
-    position:fixed; top:22px; right:22px; z-index:99;
-    display:flex; flex-direction:column; gap:10px;
-  }
-  .module-nav button{
-    all:unset; cursor:pointer;
-    width:11px; height:11px; border-radius:50%;
-    border:1.5px solid var(--ink-soft);
-    opacity:.45;
-    transition:opacity .25s, background .25s, border-color .25s, transform .2s;
-  }
-  .module-nav button:hover{transform:scale(1.2);}
-  .module-nav button.done{
-    background:var(--teal); border-color:var(--teal); opacity:1;
-  }
-  .module-nav button.active{
-    background:var(--gold); border-color:var(--gold); opacity:1;
-  }
-  @media (max-width:760px){ .module-nav{display:none;} }
+  .deck{position:relative; height:100vh; width:100vw; overflow:hidden;}
 
-  .wrap{max-width:860px; margin:0 auto; padding:0 28px;}
-
-  /* ---- Hero / Module 00 ---- */
-  .hero{
-    padding:120px 0 72px;
-    border-bottom:1px solid var(--line);
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:20;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 30px; font-family:var(--mono); font-size:12px;
+    letter-spacing:.06em; color:var(--ink-soft); pointer-events:none;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 55%, transparent 100%);
   }
+  .brand{color:var(--ink); max-width:60vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .counter span{color:var(--ink);}
+  @media (max-width:680px){
+    .topbar{padding:16px 18px; gap:10px;}
+    .brand{font-size:10px; letter-spacing:.03em;}
+    .counter{white-space:nowrap;}
+  }
+
+  .progress-rail{
+    position:fixed; top:0; left:0; right:0; height:3px; z-index:21;
+    background:var(--line);
+  }
+  .progress-rail-fill{
+    height:100%; width:16.66%;
+    background:linear-gradient(90deg, var(--mint), var(--lilac));
+    transition:width .55s cubic-bezier(.65,0,.35,1);
+  }
+
+  .slides{
+    display:flex; height:100%; width:100%;
+    transition:transform .65s cubic-bezier(.65,0,.35,1);
+  }
+  .slide{
+    min-width:100vw; height:100vh; flex-shrink:0;
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:128px 8vw 60px;
+    position:relative;
+    overflow-y:auto;
+  }
+
+  .slide-inner{max-width:920px; width:100%; position:relative; z-index:2;}
+
   .eyebrow{
-    font-family:var(--mono); font-size:12.5px; letter-spacing:.08em;
-    text-transform:uppercase; color:var(--teal); margin:0 0 18px;
-    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--mint); margin:0 0 18px;
   }
-  .eyebrow::before{
-    content:"●"; color:var(--teal); font-size:8px;
-  }
-  h1.name{
+  h1.slide-title{
     font-family:var(--display); font-weight:700;
-    font-size:clamp(2.4rem, 5.5vw, 3.6rem);
-    margin:0 0 6px; letter-spacing:-.01em;
+    font-size:clamp(2rem, 5vw, 3.4rem); line-height:1.1;
+    margin:0 0 22px; letter-spacing:-.01em;
   }
-  .role{
-    font-family:var(--display); font-weight:500; font-size:1.25rem;
-    color:var(--slate); margin:0 0 22px;
-  }
-  .meta-row{
-    display:flex; flex-wrap:wrap; gap:18px;
-    font-family:var(--mono); font-size:13px; color:var(--ink-soft);
-    margin-bottom:30px;
-  }
-  .meta-row span{display:flex; align-items:center; gap:6px;}
-
-  .summary{
-    max-width:620px; color:var(--ink-soft); font-size:1.02rem; margin-bottom:34px;
+  .slide-body{
+    color:var(--ink-soft); font-size:1.08rem; max-width:640px; margin:0 0 8px;
   }
 
-  .objectives{
-    background:var(--bg-alt); border:1px solid var(--line); border-radius:10px;
-    padding:20px 24px; max-width:640px;
+  /* ---- nav controls ---- */
+  .nav-btn{
+    position:fixed; top:50%; transform:translateY(-50%);
+    width:52px; height:52px; border-radius:50%;
+    border:1px solid var(--line); background:var(--panel);
+    color:var(--ink); font-size:20px; cursor:pointer; z-index:20;
+    display:flex; align-items:center; justify-content:center;
+    transition:border-color .2s, background .2s, opacity .2s;
   }
-  .objectives-title{
-    font-family:var(--mono); font-size:12px; text-transform:uppercase;
-    letter-spacing:.06em; color:var(--ink-soft); margin:0 0 12px;
-  }
-  .objectives ul{margin:0; padding-left:20px;}
-  .objectives li{margin-bottom:7px; font-size:.96rem;}
-  .objectives li::marker{color:var(--teal);}
-
-  .cta-row{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
-  .btn{
-    font-family:var(--mono); font-size:13px; letter-spacing:.02em;
-    padding:12px 20px; border-radius:7px; text-decoration:none;
-    display:inline-flex; align-items:center; gap:8px;
-    transition:transform .15s, box-shadow .15s;
-  }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--ink); color:var(--bg);}
-  .btn-ghost{border:1px solid var(--ink); color:var(--ink);}
-
-  /* ---- Module sections ---- */
-  .module{
-    padding:76px 0; border-bottom:1px solid var(--line);
-    position:relative; overflow:hidden;
-  }
-  .module-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom:8px;
-  }
-  .module-num{
-    font-family:var(--mono); font-size:13px; color:var(--ink-soft);
-  }
-  .module-title{
-    font-family:var(--display); font-weight:700; font-size:1.7rem; margin:0;
-  }
-  .status-pill{
-    margin-left:auto; font-family:var(--mono); font-size:11px;
-    text-transform:uppercase; letter-spacing:.06em;
-    padding:5px 11px; border-radius:20px;
-    border:1px solid var(--line); color:var(--ink-soft);
-    transition:all .4s ease; white-space:nowrap;
-  }
-  .module.is-complete .status-pill{
-    background:var(--teal-soft); border-color:var(--teal); color:var(--teal);
-  }
-  .module-sub{
-    color:var(--ink-soft); margin:0 0 40px; max-width:600px; font-size:.98rem;
+  .nav-btn:hover{border-color:var(--mint); background:var(--panel-2);}
+  .nav-btn:disabled{opacity:.25; cursor:default;}
+  .nav-btn:disabled:hover{border-color:var(--line); background:var(--panel);}
+  .nav-prev{left:26px;}
+  .nav-next{right:26px;}
+  @media (max-width:680px){
+    .nav-btn{width:42px; height:42px; font-size:16px;}
+    .nav-prev{left:12px;} .nav-next{right:12px;}
   }
 
-  /* ---- Experience cards ---- */
-  .job{
-    border-left:2px solid var(--line); padding:4px 0 4px 24px; margin-bottom:34px;
-    position:relative; transition:border-color .5s ease;
+  .dots{
+    position:fixed; bottom:26px; left:50%; transform:translateX(-50%);
+    display:flex; gap:10px; z-index:20;
   }
-  .module.is-complete .job{border-left-color:var(--teal);}
-  .job::before{
-    content:""; position:absolute; left:-6px; top:8px;
-    width:10px; height:10px; border-radius:50%;
-    background:var(--bg); border:2px solid var(--line);
-    transition:border-color .5s ease, background .5s ease;
+  .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--line);
+    border:none; cursor:pointer; padding:0; transition:all .3s;
   }
-  .module.is-complete .job::before{border-color:var(--teal); background:var(--teal);}
-  .job-top{display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; align-items:baseline;}
-  .job-title{font-family:var(--display); font-weight:600; font-size:1.08rem; margin:0;}
-  .job-org{color:var(--slate); font-weight:500;}
-  .job-date{font-family:var(--mono); font-size:12px; color:var(--ink-soft); white-space:nowrap;}
-  .job-pill{
-    font-family:var(--mono); font-size:10.5px; text-transform:uppercase;
-    padding:3px 9px; border-radius:20px; margin-left:8px;
-  }
-  .job-pill.current{background:var(--gold-soft); color:var(--gold);}
-  .job-pill.past{background:var(--teal-soft); color:var(--teal);}
-  .job ul{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:.94rem;}
-  .job li{margin-bottom:5px;}
-  .job-project{
-    margin-top:14px; padding:14px 16px; background:var(--bg-alt);
-    border-radius:8px; font-size:.92rem;
-  }
-  .job-project strong{font-family:var(--display); color:var(--ink);}
+  .dot.active{width:22px; border-radius:5px; background:var(--mint);}
 
-  /* ---- Skills ---- */
-  .skill-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-    gap:22px;
+  /* ---- ambient doodles ---- */
+  .amb{position:absolute; pointer-events:none; opacity:.5; z-index:1;}
+  .doodle{fill:none; stroke-linecap:round; stroke-linejoin:round;}
+
+  /* ===== Slide 0 — Cover ===== */
+  .cover-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+  .tag{
+    font-family:var(--mono); font-size:12px; padding:7px 13px;
+    border-radius:20px; border:1px solid var(--line); color:var(--ink-soft);
   }
-  .skill-card{
-    background:var(--bg-alt); border:1px solid var(--line); border-radius:10px; padding:20px 22px;
-  }
-  .skill-card h3{
-    font-family:var(--display); font-size:1rem; margin:0 0 12px;
+  .start-hint{
+    margin-top:52px; font-family:var(--mono); font-size:12px; color:var(--ink-soft);
     display:flex; align-items:center; gap:8px;
   }
-  .skill-card h3::before{content:"◆"; color:var(--teal); font-size:10px;}
-  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{
-    font-family:var(--mono); font-size:11.5px; padding:5px 10px;
-    border-radius:6px; background:var(--bg); border:1px solid var(--line); color:var(--ink-soft);
+  .start-hint svg{animation:nudge 1.6s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(6px);}}
+
+  /* ===== Slide 1 — Two lenses ===== */
+  .lens-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:36px;}
+  .lens{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:28px 26px; position:relative; overflow:hidden;
+  }
+  .lens-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; margin-bottom:12px; display:inline-block;
+    padding:4px 10px; border-radius:20px;
+  }
+  .lens.eng .lens-label{background:rgba(94,234,212,.15); color:var(--mint);}
+  .lens.des .lens-label{background:rgba(255,107,91,.15); color:var(--coral);}
+  .lens h3{font-family:var(--display); font-size:1.3rem; margin:0 0 10px;}
+  .lens p{color:var(--ink-soft); font-size:.95rem; margin:0;}
+  @media (max-width:680px){ .lens-grid{grid-template-columns:1fr;} }
+
+  /* ===== Slide 2 — What I build ===== */
+  .build-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px;}
+  .build-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:24px 20px; transition:transform .2s, border-color .2s;
+  }
+  .build-card:hover{transform:translateY(-4px);}
+  .build-card .dot-icon{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+  .build-card h3{font-family:var(--display); font-size:1.05rem; margin:0 0 8px; line-height:1.3;}
+  .build-card p{color:var(--ink-soft); font-size:.87rem; margin:0;}
+  @media (max-width:760px){ .build-grid{grid-template-columns:1fr;} }
+
+  /* ===== Slide 3 — Knowledge check (flip cards) ===== */
+  .flip-hint{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:26px;}
+  .flip-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .flip-card{perspective:1000px; height:190px; cursor:pointer;}
+  .flip-inner{
+    position:relative; width:100%; height:100%; transition:transform .6s;
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:center;
+    border:1px solid var(--line);
+  }
+  .flip-front{background:var(--panel);}
+  .flip-front .q-mark{font-family:var(--display); font-size:1.6rem; margin-bottom:10px;}
+  .flip-front p{font-family:var(--display); font-weight:600; font-size:1.02rem; margin:0; color:var(--ink);}
+  .flip-back{
+    background:var(--panel-2); transform:rotateY(180deg);
+  }
+  .flip-back p{font-size:.88rem; color:var(--ink-soft); margin:0;}
+  .flip-front small, .flip-back small{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; opacity:.7;}
+  @media (max-width:760px){ .flip-grid{grid-template-columns:1fr;} .flip-card{height:150px;} }
+
+  /* ===== Slide 4 — Right now ===== */
+  .status-row{display:flex; align-items:center; gap:12px; margin:26px 0 20px;}
+  .status-pill{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em;
+    padding:6px 13px; border-radius:20px; background:rgba(255,209,102,.15); color:var(--sun);
+    border:1px solid rgba(255,209,102,.4);
+  }
+  .now-loc{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft);}
+
+  /* ===== Slide 5 — Contact ===== */
+  .contact-links{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;}
+  .clink{
+    font-family:var(--mono); font-size:13.5px; padding:14px 22px; border-radius:10px;
+    border:1px solid var(--line); text-decoration:none; color:var(--ink);
+    display:inline-flex; align-items:center; gap:10px; transition:border-color .2s, background .2s, transform .2s;
+  }
+  .clink:hover{border-color:var(--mint); background:var(--panel); transform:translateY(-2px);}
+  .closing-note{margin-top:40px; color:var(--ink-soft); font-size:.9rem; max-width:480px;}
+
+  /* ===== NBQ timeline slide ===== */
+  .nbq-badge{
+    display:inline-flex; align-items:center; gap:8px; font-family:var(--mono);
+    font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+    padding:6px 13px; border-radius:20px; background:rgba(94,234,212,.12);
+    color:var(--mint); border:1px solid rgba(94,234,212,.35); margin-bottom:24px;
+  }
+  .nbq-timeline{position:relative; margin-top:8px; padding-left:30px; border-left:2px solid var(--line);}
+  .nbq-year{position:relative; margin-bottom:30px;}
+  .nbq-year:last-child{margin-bottom:0;}
+  .nbq-year::before{
+    content:""; position:absolute; left:-38px; top:5px;
+    width:13px; height:13px; border-radius:50%; background:var(--yr-color); box-shadow:0 0 0 4px var(--bg);
+  }
+  .nbq-year-label{
+    font-family:var(--mono); font-size:13px; color:var(--yr-color); display:block; margin-bottom:4px;
+  }
+  .nbq-year h3{font-family:var(--display); font-weight:600; font-size:1.06rem; margin:0 0 6px;}
+  .nbq-year p{color:var(--ink-soft); font-size:.92rem; margin:0; max-width:560px;}
+  .nbq-tag-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .nbq-tag{
+    font-family:var(--mono); font-size:10.5px; padding:4px 10px; border-radius:20px;
+    border:1px solid var(--line); color:var(--ink-soft);
   }
 
-  /* ---- Projects ---- */
-  .project-grid{display:grid; gap:20px;}
-  .project-card{
-    border:1px solid var(--line); border-radius:10px; padding:22px 24px;
-    background:var(--bg-alt); transition:border-color .3s, transform .2s;
+  .nbq-about{
+    border-left:2px solid var(--mint); padding-left:20px; margin:22px 0 40px; max-width:640px;
   }
-  .project-card:hover{border-color:var(--teal); transform:translateY(-2px);}
-  .project-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
-  .project-card h3{font-family:var(--display); font-size:1.1rem; margin:0;}
-  .project-stack{font-family:var(--mono); font-size:11.5px; color:var(--slate);}
-  .project-card p{color:var(--ink-soft); font-size:.94rem; margin:10px 0 0;}
-
-  /* ---- Education ---- */
-  .edu-row{
-    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
-    padding:16px 0; border-bottom:1px dashed var(--line);
+  .nbq-about p{
+    color:var(--ink-soft); font-size:.92rem; line-height:1.6; margin:0 0 12px;
   }
-  .edu-row:last-child{border-bottom:none;}
-  .edu-degree{font-family:var(--display); font-weight:600;}
-  .edu-school{color:var(--ink-soft); font-size:.92rem;}
-  .edu-date{font-family:var(--mono); font-size:12px; color:var(--ink-soft);}
-
-  /* ---- Contact / Module 05 ---- */
-  .contact{
-    padding:76px 0 90px; border-bottom:none;
-  }
-  .contact-grid{
-    display:flex; flex-wrap:wrap; gap:16px; margin-top:28px;
-  }
-  .contact-card{
-    flex:1 1 200px; border:1px solid var(--line); border-radius:10px;
-    padding:18px 20px; text-decoration:none; color:var(--ink);
-    transition:border-color .25s, background .25s;
-  }
-  .contact-card:hover{border-color:var(--teal); background:var(--teal-soft);}
-  .contact-label{font-family:var(--mono); font-size:11px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; display:block;}
-  .contact-value{font-family:var(--display); font-weight:600; font-size:.98rem;}
-
-  footer{
-    text-align:center; font-family:var(--mono); font-size:12px;
-    color:var(--ink-soft); padding:30px 0 50px;
-  }
-
-  @media (max-width:600px){
-    .hero{padding-top:90px;}
-  }
-
-  /* ---- Doodles ---- */
-  .doodle{fill:none; stroke-linecap:round; stroke-linejoin:round;}
-  .doodle.teal{stroke:var(--teal); color:var(--teal);}
-  .doodle.gold{stroke:var(--gold); color:var(--gold);}
-  .doodle.slate{stroke:var(--slate); color:var(--slate);}
-  .doodle.coral{stroke:var(--coral); color:var(--coral);}
-  .doodle.sky{stroke:var(--sky); color:var(--sky);}
-  .doodle.plum{stroke:var(--plum); color:var(--plum);}
-
-  .mark{
-    background-image:linear-gradient(120deg, var(--mark-color, var(--gold-soft)) 0%, var(--mark-color, var(--gold-soft)) 100%);
-    background-repeat:no-repeat; background-size:100% 42%; background-position:0 88%;
-    padding:0 3px;
-  }
-
-  .scatter{position:absolute; pointer-events:none; opacity:.55;}
-  .section-scatter{position:relative;}
-  .section-scatter > .wrap{position:relative; z-index:1;}
-
-  .hero{position:relative; overflow:hidden;}
-  .hero-doodles{position:absolute; inset:0; pointer-events:none; z-index:0;}
-  .hero-doodles svg{position:absolute; opacity:.55;}
-  .d-bulb{width:74px; top:34px; right:9%; transform:rotate(-6deg);}
-  .d-check{width:58px; top:190px; right:2%; transform:rotate(8deg);}
-  .d-arrow{width:110px; bottom:60px; right:6%; transform:rotate(-3deg);}
-  .d-play{width:64px; top:110px; right:19%; transform:rotate(4deg);}
-  @media (max-width:900px){ .d-check, .d-play{display:none;} .d-bulb{right:4%;} .d-arrow{right:2%; width:90px;} }
-  @media (max-width:600px){ .hero-doodles{display:none;} }
-
-  .hero > .wrap{position:relative; z-index:1;}
-
-  .role-wrap{position:relative; display:inline-block; margin-bottom:26px;}
-  .role-underline{
-    position:absolute; left:0; bottom:-9px; width:100%; height:10px;
-    color:var(--gold); opacity:.9;
-  }
-
-  .objectives{position:relative;}
-  .tape{
-    position:absolute; top:-12px; left:28px; width:52px; height:20px;
-    background:var(--gold-soft); border:1px solid var(--gold);
-    opacity:.85; transform:rotate(-4deg);
-  }
-
-  .module-head{position:relative;}
-  .module-icon{width:30px; height:30px; flex-shrink:0;}
-  .module-icon .doodle{stroke-width:2.6;}
-
-  @media (max-width:600px){ .module-icon{display:none;} }
-
-  /* ---- Scattered section doodles ---- */
-  .scatter{width:34px;}
-  .s-exp-1{top:24px; right:6%;}
-  .s-exp-2{bottom:36px; right:2%; width:44px;}
-  .s-skill-1{top:20px; right:3%; width:40px;}
-  .s-skill-2{bottom:30px; right:14%; width:26px;}
-  .s-proj-1{top:10px; right:8%; width:30px;}
-  .s-proj-2{bottom:20px; right:1%; width:50px;}
-  .s-edu-1{top:20px; right:5%; width:36px;}
-  .s-edu-2{bottom:24px; right:16%; width:24px;}
-  .s-contact-1{top:16px; right:7%; width:32px;}
-  .s-contact-2{bottom:26px; right:2%; width:46px;}
-  .s-exp-3{top:120px; right:22%; width:22px;}
-  .s-skill-3{top:100px; right:0%; width:28px;}
-  .s-proj-3{top:80px; right:24%; width:24px;}
-  .s-edu-3{top:90px; right:1%; width:30px;}
-  .s-contact-3{top:80px; right:23%; width:22px;}
-  @media (max-width:760px){ .scatter{display:none;} }
-
-  .chip.teal{background:var(--teal-soft); color:var(--teal); border-color:transparent;}
-  .chip.coral{background:var(--coral-soft); color:var(--coral); border-color:transparent;}
-  .chip.slate{background:var(--sky-soft); color:var(--sky); border-color:transparent;}
-  .chip.gold{background:var(--gold-soft); color:var(--gold); border-color:transparent;}
-
-  .skill-card{border-top:3px solid var(--line);}
-  .skill-card.c-teal{border-top-color:var(--teal);}
-  .skill-card.c-coral{border-top-color:var(--coral);}
-  .skill-card.c-sky{border-top-color:var(--sky);}
-  .skill-card.c-gold{border-top-color:var(--gold);}
-  .skill-card h3::before{color:var(--icon-color, var(--teal));}
-
-  .contact-icon{width:20px; height:20px; margin-bottom:8px; display:block;}
-
-  .job-icon{width:26px; height:26px; flex-shrink:0; margin-top:2px;}
-  .job-top-row{display:flex; gap:12px; align-items:flex-start;}
-
-  .obj-icon{width:18px; height:18px; flex-shrink:0; margin-right:8px; margin-top:2px;}
-  .objectives ul{list-style:none; padding-left:0;}
-  .objectives li{display:flex; align-items:flex-start;}
-
-  .footer-doodle{width:120px; display:block; margin:0 auto 10px;}
+  .nbq-about p:last-child{margin-bottom:0; color:var(--ink);}
 </style>
 </head>
 <body>
 
-<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-rail"><div class="progress-rail-fill" id="railFill"></div></div>
 
-<nav class="module-nav" id="moduleNav">
-  <button data-target="hero" title="Overview"></button>
-  <button data-target="experience" title="Experience"></button>
-  <button data-target="skills" title="Skills"></button>
-  <button data-target="projects" title="Projects"></button>
-  <button data-target="education" title="Education"></button>
-  <button data-target="contact" title="Contact"></button>
-</nav>
+<div class="topbar">
+  <span class="brand">AMANDA SAKUNI NASHARA KAVIRATHNA</span>
+  <span class="counter"><span id="curNum">01</span> / 07</span>
+</div>
 
-<section class="hero module" id="hero">
-  <div class="hero-doodles" aria-hidden="true">
-    <svg class="d-bulb doodle teal" viewBox="0 0 64 64" stroke-width="2.4">
-      <path d="M32 6c-11 0-19 8-19 18 0 7 4 11 8 15 2 3 3 5 3 8h16c0-3 1-5 3-8 4-4 8-8 8-15 0-10-8-18-19-18z"/>
-      <path d="M25 51h14M27 57h10"/>
-      <path d="M32 4v-3M13 15l-4-3M52 14l4-3"/>
-    </svg>
-    <svg class="d-play doodle slate" viewBox="0 0 64 64" stroke-width="2.4">
-      <rect x="7" y="12" width="50" height="33" rx="4"/>
-      <path d="M7 20h50"/>
-      <circle cx="13.5" cy="16" r="1.2" fill="currentColor" stroke="none"/>
-      <circle cx="18.5" cy="16" r="1.2" fill="currentColor" stroke="none"/>
-      <path d="M26 27l14 8-14 8z"/>
-      <path d="M20 53h24"/>
-    </svg>
-    <svg class="d-check doodle gold" viewBox="0 0 64 64" stroke-width="2.6">
-      <rect x="13" y="10" width="37" height="47" rx="4"/>
-      <rect x="23" y="5" width="17" height="9" rx="2"/>
-      <path d="M21 33l7 7 16-17"/>
-    </svg>
-    <svg class="d-arrow doodle teal" viewBox="0 0 140 40" stroke-width="2.6">
-      <path d="M4 30c14 6 20-16 34-14s16 18 30 12 18-14 32-8"/>
-      <path d="M92 16l8 4-4 9"/>
-    </svg>
-  </div>
-  <div class="wrap">
-    <p class="eyebrow">Module 00 — Overview</p>
-    <h1 class="name">Amanda Kavirathna</h1>
-    <div class="role-wrap">
-      <p class="role" style="margin-bottom:0;">E-Learning Developer &amp; LMS Specialist</p>
-      <svg class="role-underline" viewBox="0 0 200 12" preserveAspectRatio="none" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round">
-        <path d="M2 8c22-7 40 4 62-1s38-7 60-1 40 5 74-2"/>
+<div class="deck">
+  <div class="slides" id="slides">
+
+    <!-- Slide 0: Cover -->
+    <section class="slide" id="s0">
+      <svg class="amb" viewBox="0 0 100 100" style="top:14%; left:8%; width:90px;" stroke-width="2">
+        <circle class="doodle" style="stroke:var(--mint)" cx="50" cy="50" r="34"/>
       </svg>
-    </div>
-    <div class="meta-row">
-      <span>📍 Sharjah, UAE</span>
-      <span>✉ sakuniamanda1@gmail.com</span>
-      <span>☎ +971 54 534 2554</span>
-    </div>
-    <p class="summary">
-      I build corporate training that <span class="mark" style="--mark-color:var(--gold-soft);">actually works</span> — and I understand the engineering underneath it.
-      <span class="mark" style="--mark-color:var(--teal-soft);">2+ years</span> designing and administering LMS-based compliance and operational training programs,
-      backed by <span class="mark" style="--mark-color:var(--coral-soft);">5+ years</span> as a software developer. I've shipped SCORM packages, run Totara at scale,
-      and written the C#/.NET code that trained the systems people now train on.
-    </p>
-    <div class="objectives">
-      <div class="tape" aria-hidden="true"></div>
-      <p class="objectives-title">By the end of this page, you'll know</p>
-      <ul>
-        <li><svg class="obj-icon doodle teal" viewBox="0 0 24 24" stroke-width="2.6"><path d="M4 12l6 6L20 6"/></svg>How I turn regulatory and operational requirements into training people actually complete</li>
-        <li><svg class="obj-icon doodle coral" viewBox="0 0 24 24" stroke-width="2.6"><path d="M4 12l6 6L20 6"/></svg>Why an engineering background changes how I build and troubleshoot LMS platforms</li>
-        <li><svg class="obj-icon doodle sky" viewBox="0 0 24 24" stroke-width="2.6"><path d="M4 12l6 6L20 6"/></svg>Where I've delivered this — banking compliance, IT training, and simulation-based learning</li>
-      </ul>
-    </div>
-    <div class="cta-row">
-      <a href="mailto:sakuniamanda1@gmail.com" class="btn btn-primary">Get in touch →</a>
-      <a href="#experience" class="btn btn-ghost">View experience</a>
-    </div>
-  </div>
-</section>
-
-<section class="module section-scatter" id="experience">
-  <svg class="scatter s-exp-1 doodle coral" viewBox="0 0 40 40" stroke-width="2.6" aria-hidden="true">
-    <path d="M20 4l3 12 12 3-12 3-3 12-3-12-12-3 12-3z"/>
-  </svg>
-  <svg class="scatter s-exp-2 doodle sky" viewBox="0 0 50 50" stroke-width="2.6" aria-hidden="true">
-    <path d="M6 30c8-2 10-14 18-14s9 11 18 9"/>
-    <path d="M36 22l6 3-3 6"/>
-  </svg>
-  <svg class="scatter s-exp-3 doodle slate" viewBox="0 0 30 30" stroke-width="2.4" aria-hidden="true">
-    <circle cx="15" cy="11" r="8"/>
-    <path d="M10 18l-3 9 8-4 8 4-3-9"/>
-  </svg>
-  <div class="wrap">
-    <div class="module-head">
-      <svg class="module-icon doodle teal" viewBox="0 0 64 64" stroke-width="2.6">
-        <circle cx="9" cy="52" r="3"/>
-        <path d="M9 52c7-9 2-21 11-25s6-15 17-17 9 11 20 7"/>
-        <circle cx="57" cy="15" r="3"/>
+      <svg class="amb" viewBox="0 0 100 40" style="bottom:18%; right:10%; width:160px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--lilac)" d="M4 30c14 6 20-24 34-20s16 26 30 18 18-20 28-12"/>
       </svg>
-      <span class="module-num">01</span>
-      <h2 class="module-title">Experience</h2>
-      <span class="status-pill">In progress</span>
-    </div>
-    <p class="module-sub">Five roles, one thread: taking complex technical or regulatory content and making it learnable.</p>
+      <svg class="amb" viewBox="0 0 60 60" style="top:22%; right:14%; width:50px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--sun)" d="M30 4l6 18 18 6-18 6-6 18-6-18-18-6 18-6z"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 40 40" style="bottom:24%; left:14%; width:30px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--lilac)" d="M20 6v28M6 20h28"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 50 50" style="bottom:8%; left:32%; width:24px;" stroke-width="2.4">
+        <circle class="doodle" style="stroke:var(--coral)" cx="25" cy="25" r="18"/>
+      </svg>
+      <div class="slide-inner">
+        <p class="eyebrow">Portfolio</p>
+        <h1 class="slide-title">Hi, I'm Amanda.<br>I make learning worth clicking.</h1>
+        <p class="slide-body">Not the kind that gets clicked through and forgotten.<br>
+        I create engaging e-learning experiences and LMS solutions designed to make learning feel clear, useful, and worth completing.<br>
+        With a background in software development, I understand what happens behind the screen too — so I bring both technical thinking and learning design to every project.<br>
+        Because good training shouldn't just be completed. It should be remembered.</p>
+        <div class="cover-tags">
+          <span class="tag">E-Learning Developer</span>
+          <span class="tag">LMS Specialist</span>
+          <span class="tag">Ex-Software Engineer</span>
+          <span class="tag">Sharjah, UAE</span>
+        </div>
+        <div class="start-hint">
+          Press next to begin
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </section>
 
-    <div class="job">
-      <div class="job-top">
-        <div class="job-top-row">
-          <svg class="job-icon doodle teal" viewBox="0 0 40 40" stroke-width="2.6"><rect x="4" y="8" width="32" height="21" rx="3"/><path d="M4 14h32"/><path d="M16 17l9 5-9 5z"/></svg>
-          <div>
-            <p class="job-title">E-Learning Developer / Business Solution Officer <span class="job-pill current">Current</span></p>
-            <p class="job-org">ZEMYD Marketing Consultancy · UAE</p>
+    <!-- Slide 1: Two lenses -->
+    <section class="slide" id="s1">
+      <svg class="amb" viewBox="0 0 60 60" style="bottom:12%; left:6%; width:56px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--mint)" d="M30 4l6 18 18 6-18 6-6 18-6-18-18-6 18-6z"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 100 40" style="top:20%; right:6%; width:130px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--coral)" d="M4 30c14 6 20-24 34-20s16 26 30 18 18-20 28-12"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 40 40" style="bottom:16%; right:10%; width:34px;" stroke-width="2.6">
+        <circle class="doodle" style="stroke:var(--lilac)" cx="20" cy="20" r="14"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 30 30" style="top:14%; left:4%; width:22px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--sun)" d="M15 2l3 10 10 3-10 3-3 10-3-10-10-3 10-3z"/>
+      </svg>
+      <div class="slide-inner">
+        <p class="eyebrow">How I think</p>
+        <h1 class="slide-title">Two lenses, one brain.</h1>
+        <p class="slide-body">Most instructional designers learn the tools. I built tools like these before I ever used one to teach.</p>
+        <div class="lens-grid">
+          <div class="lens eng">
+            <span class="lens-label">The Engineer</span>
+            <h3>5+ years writing the systems</h3>
+            <p>C#, .NET, SQL, Angular, Unity. I don't just click around an LMS — I understand what's actually happening when a course fails to launch or a report won't generate.</p>
+          </div>
+          <div class="lens des">
+            <span class="lens-label">The Designer</span>
+            <h3>2+ years designing what sticks</h3>
+            <p>Compliance modules, onboarding, assessments — built in Articulate 360 and delivered through Totara, for people who don't have time to sit through bad training.</p>
           </div>
         </div>
-        <span class="job-date">Jan 2024 — Present</span>
       </div>
-      <ul>
-        <li>Design and develop interactive e-learning modules using Articulate 360</li>
-        <li>Administer Totara LMS — course setup, enrollments, permissions, mobile access</li>
-        <li>Deploy and maintain SCORM-compliant learning content</li>
-        <li>Generate and analyze training reports, completion rates, and learner performance metrics</li>
-        <li>Provide LMS technical support and collaborate with clients on digital learning initiatives</li>
-      </ul>
-      <div class="job-project">
-        <strong>Key client project — National Bank of Umm Al Quwain (NBQ):</strong>
-        Built end-to-end compliance and branch training programs — from module design and assessments
-        in Articulate 360 to full LMS delivery, tracking, and management reporting.
-      </div>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-top">
-        <div class="job-top-row">
-          <svg class="job-icon doodle coral" viewBox="0 0 40 40" stroke-width="2.6"><rect x="3" y="5" width="34" height="22" rx="2"/><path d="M12 32h16M20 27v5"/><path d="M9 14l6 5M9 22l6-5" /></svg>
-          <div>
-            <p class="job-title">IT Lecturer <span class="job-pill past">Completed</span></p>
-            <p class="job-org">British Campus · Sri Lanka</p>
+    <!-- Slide 2: What I build -->
+    <section class="slide" id="s2">
+      <svg class="amb" viewBox="0 0 40 40" style="top:18%; right:8%; width:36px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--sun)" d="M20 3l3.5 13.5L37 20l-13.5 3.5L20 37l-3.5-13.5L3 20l13.5-3.5z"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 60 30" style="bottom:14%; left:5%; width:100px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--mint)" d="M2 22c8 4 12-16 20-14s10 18 18 12"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 30 30" style="top:16%; left:4%; width:22px;" stroke-width="2.6">
+        <circle class="doodle" style="stroke:var(--coral)" cx="15" cy="15" r="4" fill="var(--coral)" stroke="none"/>
+        <circle class="doodle" style="stroke:var(--coral)" cx="26" cy="8" r="2.6" fill="var(--coral)" stroke="none"/>
+        <circle class="doodle" style="stroke:var(--coral)" cx="6" cy="24" r="2" fill="var(--coral)" stroke="none"/>
+      </svg>
+      <div class="slide-inner">
+        <p class="eyebrow">What I build</p>
+        <h1 class="slide-title">Three problems I keep solving.</h1>
+        <div class="build-grid">
+          <div class="build-card">
+            <div class="dot-icon" style="background:rgba(94,234,212,.15);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg>
+            </div>
+            <h3>Compliance that doesn't feel like homework</h3>
+            <p>Bank regulatory training built to actually get finished, not just assigned. Live at National Bank of Umm Al Quwain.</p>
+          </div>
+          <div class="build-card">
+            <div class="dot-icon" style="background:rgba(185,140,227,.15);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lilac)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <h3>LMS systems that run themselves</h3>
+            <p>Full Totara administration — enrollments, permissions, SCORM delivery, and reporting that management actually reads.</p>
+          </div>
+          <div class="build-card">
+            <div class="dot-icon" style="background:rgba(255,209,102,.15);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sun)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.4" fill="var(--sun)" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="var(--sun)" stroke="none"/></svg>
+            </div>
+            <h3>Simulations people remember</h3>
+            <p>Built an interactive training simulator in Unity for Sri Lanka's Ministry of Defense — scenario-based, not slide-based.</p>
           </div>
         </div>
-        <span class="job-date">Sep 2021 — Jan 2023</span>
       </div>
-      <ul>
-        <li>Delivered interactive IT lessons using hands-on, activity-based methods</li>
-        <li>Designed engaging learning materials to introduce core IT concepts</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-top">
-        <div class="job-top-row">
-          <svg class="job-icon doodle sky" viewBox="0 0 40 40" stroke-width="2.6"><path d="M14 10L4 20l10 10"/><path d="M26 10l10 10-10 10"/></svg>
-          <div>
-            <p class="job-title">Associate Software Developer <span class="job-pill past">Completed</span></p>
-            <p class="job-org">Ebranding BizSolutions · Sri Lanka</p>
+    <!-- Slide 3: NBQ timeline -->
+    <section class="slide" id="s3">
+      <svg class="amb" viewBox="0 0 40 40" style="top:16%; right:7%; width:32px;" stroke-width="2.4">
+        <circle class="doodle" style="stroke:var(--coral)" cx="20" cy="20" r="15"/>
+        <circle class="doodle" style="stroke:var(--coral)" cx="20" cy="20" r="7"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 60 24" style="bottom:6%; right:4%; width:110px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--mint)" d="M2 12l10-8 10 8 10-8 10 8 10-8 10 8"/>
+      </svg>
+      <div class="slide-inner">
+        <span class="nbq-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
+          Client case study
+        </span>
+        <p class="eyebrow">National Bank of Umm Al Quwain (NBQ)</p>
+        <h1 class="slide-title">One client, three years — mainly compliance training.</h1>
+
+        <div class="nbq-about">
+          <p>We transform complex compliance requirements into clear, engaging digital learning experiences that employees can actually understand and apply.</p>
+          <p>Our compliance training covers topics such as Anti-Money Laundering (AML), Money Laundering, and Terrorist Financing, turning detailed policies and regulatory requirements into structured, interactive e-learning modules.</p>
+          <p>From content structure and instructional design to Articulate Storyline development, interactions, assessments, audio, animations, and SCORM integration, we build training that is easy to navigate, engaging to complete, and ready to deploy through an LMS.</p>
+          <p>The goal is simple: make mandatory compliance training feel less like a requirement and more like learning that sticks.</p>
+        </div>
+
+        <div class="nbq-timeline">
+          <div class="nbq-year" style="--yr-color:var(--mint);">
+            <span class="nbq-year-label">2024</span>
+            <h3>Compliance Training — AML &amp; Regulatory</h3>
+            <p>Built and launched regulatory compliance and branch-level onboarding modules in Articulate 360, with assessments to verify understanding, not just attendance. Set up full Totara LMS delivery — enrollments, permissions, tracking, and completion reporting from day one.</p>
+            <div class="nbq-tag-row"><span class="nbq-tag">Articulate 360</span><span class="nbq-tag">Totara LMS</span><span class="nbq-tag">SCORM</span></div>
+          </div>
+          <div class="nbq-year" style="--yr-color:var(--sun);">
+            <span class="nbq-year-label">2025</span>
+            <h3>Compliance Training — AML &amp; Regulatory</h3>
+            <p>A structured, interactive e-learning module covering Anti-Money Laundering, Money Laundering, and Terrorist Financing — content design, Storyline interactions, assessments, audio, and animation, packaged and deployed through SCORM.</p>
+            <div class="nbq-tag-row"><span class="nbq-tag">AML</span><span class="nbq-tag">Terrorist Financing</span><span class="nbq-tag">Articulate Storyline</span></div>
+          </div>
+          <div class="nbq-year" style="--yr-color:var(--coral);">
+            <span class="nbq-year-label">2026</span>
+            <h3>Compliance Training — Retail Transformation</h3>
+            <p>A second compliance training initiative, this time supporting NBQ's Retail Transformation — delivered as blended learning, combining self-paced online modules with live, in-person classroom sessions for branch staff.</p>
+            <div class="nbq-tag-row"><span class="nbq-tag">Blended Learning</span><span class="nbq-tag">Classroom Facilitation</span><span class="nbq-tag">Retail Transformation</span></div>
           </div>
         </div>
-        <span class="job-date">May 2021 — Dec 2021</span>
       </div>
-      <ul>
-        <li>Developed web and desktop applications using C#, .NET, ASP.NET MVC, SQL</li>
-        <li>Implemented authentication, database integration, and form handling</li>
-        <li>Followed best practices including unit testing and code reviews</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-top">
-        <div class="job-top-row">
-          <svg class="job-icon doodle plum" viewBox="0 0 40 40" stroke-width="2.6"><path d="M20 5L4 14l16 9 16-9z"/><path d="M4 20l16 9 16-9"/><path d="M4 26l16 9 16-9"/></svg>
-          <div>
-            <p class="job-title">Junior Software Developer <span class="job-pill past">Completed</span></p>
-            <p class="job-org">Orel IT · Sri Lanka</p>
+    <!-- Slide 4: Knowledge check -->
+    <section class="slide" id="s4">
+      <svg class="amb" viewBox="0 0 50 20" style="bottom:12%; right:8%; width:110px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--lilac)" d="M2 14c9-9 14 9 23 0s14 9 23 0"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 30 30" style="top:14%; right:6%; width:22px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--coral)" d="M15 2l3 10 10 3-10 3-3 10-3-10-10-3 10-3z"/>
+      </svg>
+      <div class="slide-inner">
+        <p class="eyebrow">Quick knowledge check</p>
+        <h1 class="slide-title">Click a card. See what's underneath.</h1>
+        <p class="flip-hint">This is how most of my assessments work, too.</p>
+        <div class="flip-grid">
+          <div class="flip-card" data-card="1">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <small>Question</small>
+                <p>What's SCORM, really?</p>
+              </div>
+              <div class="flip-face flip-back">
+                <small>Answer</small>
+                <p>The packaging standard that lets any LMS play my courses correctly — tracking, scoring, and completion, every time.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card" data-card="2">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <small>Question</small>
+                <p>Why does an engineer make good training?</p>
+              </div>
+              <div class="flip-face flip-back">
+                <small>Answer</small>
+                <p>Because I can see the whole system, not just the slide in front of me — so I fix root causes, not symptoms.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card" data-card="3">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <small>Question</small>
+                <p>Sri Lanka or UAE?</p>
+              </div>
+              <div class="flip-face flip-back">
+                <small>Answer</small>
+                <p>Trained in Sri Lanka. Now building compliance training in the UAE.</p>
+              </div>
+            </div>
           </div>
         </div>
-        <span class="job-date">Jun 2020 — Aug 2020</span>
       </div>
-      <ul>
-        <li>Supported development of CRM applications using Angular and TypeScript</li>
-        <li>Worked closely with cross-functional teams to translate requirements into functional solutions</li>
-        <li>Built a strong foundation in system workflows, UX, and structured problem-solving</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="job">
-      <div class="job-top">
-        <div class="job-top-row">
-          <svg class="job-icon doodle gold" viewBox="0 0 40 40" stroke-width="2.6"><rect x="3" y="14" width="34" height="16" rx="8"/><path d="M11 18v8M7 22h8"/><circle cx="27" cy="20" r="1.6" fill="currentColor" stroke="none"/><circle cx="31" cy="24" r="1.6" fill="currentColor" stroke="none"/></svg>
-          <div>
-            <p class="job-title">Trainee Software Developer <span class="job-pill past">Completed</span></p>
-            <p class="job-org">Ministry of Defense (CRD) · Sri Lanka</p>
-          </div>
-        </div>
-        <span class="job-date">Jan 2019 — Jan 2020</span>
-      </div>
-      <ul>
-        <li>Contributed to an interactive simulation system for training purposes, built in Unity and C#</li>
-        <li>Collaborated with subject matter experts to design scenario-based learning environments</li>
-        <li>Gained early exposure to training simulations and instructional logic</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="module section-scatter" id="skills">
-  <svg class="scatter s-skill-1 doodle plum" viewBox="0 0 40 40" stroke-width="2.6" aria-hidden="true">
-    <circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/>
-    <circle cx="8" cy="10" r="2" fill="currentColor" stroke="none"/>
-    <circle cx="32" cy="8" r="2.4" fill="currentColor" stroke="none"/>
-    <circle cx="34" cy="30" r="2" fill="currentColor" stroke="none"/>
-    <circle cx="6" cy="30" r="1.8" fill="currentColor" stroke="none"/>
-  </svg>
-  <svg class="scatter s-skill-2 doodle gold" viewBox="0 0 30 30" stroke-width="2.6" aria-hidden="true">
-    <path d="M15 3l2.5 9.5L27 15l-9.5 2.5L15 27l-2.5-9.5L3 15l9.5-2.5z"/>
-  </svg>
-  <svg class="scatter s-skill-3 doodle coral" viewBox="0 0 32 32" stroke-width="2.4" aria-hidden="true">
-    <path d="M4 7c4-2 8-2 12 1v18c-4-3-8-3-12-1z"/>
-    <path d="M28 7c-4-2-8-2-12 1v18c4-3 8-3 12-1z"/>
-  </svg>
-  <div class="wrap">
-    <div class="module-head">
-      <svg class="module-icon doodle slate" viewBox="0 0 64 64" stroke-width="2.6">
-        <circle cx="32" cy="32" r="10"/>
-        <path d="M32 7v9M32 48v9M7 32h9M48 32h9M15 15l6 6M43 43l6 6M49 15l-6 6M21 43l-6 6"/>
+    <!-- Slide 5: Right now -->
+    <section class="slide" id="s5">
+      <svg class="amb" viewBox="0 0 40 40" style="top:18%; right:9%; width:34px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--sun)" d="M20 4c-9 0-15 7-15 14 0 5 3 8 6 11h18c3-3 6-6 6-11 0-7-6-14-15-14z"/>
       </svg>
-      <span class="module-num">02</span>
-      <h2 class="module-title">Skills</h2>
-      <span class="status-pill">In progress</span>
-    </div>
-    <p class="module-sub">The overlap is the point: LMS platforms are software, and I read them like one.</p>
-
-    <div class="skill-grid">
-      <div class="skill-card c-teal" style="--icon-color:var(--teal);">
-        <h3>E-Learning &amp; LMS</h3>
-        <div class="chip-row">
-          <span class="chip teal">Articulate 360 — Storyline</span>
-          <span class="chip teal">Articulate 360 — Rise</span>
-          <span class="chip teal">Totara LMS Administration</span>
-          <span class="chip teal">SCORM</span>
-          <span class="chip teal">Mobile LMS</span>
-          <span class="chip teal">Learning Analytics &amp; Reporting</span>
-        </div>
-      </div>
-      <div class="skill-card c-coral" style="--icon-color:var(--coral);">
-        <h3>Instructional Design</h3>
-        <div class="chip-row">
-          <span class="chip coral">Compliance &amp; Corporate Training</span>
-          <span class="chip coral">Interactive Learning Design</span>
-          <span class="chip coral">Stakeholder Collaboration</span>
-          <span class="chip coral">Assessment Design</span>
-        </div>
-      </div>
-      <div class="skill-card c-sky" style="--icon-color:var(--sky);">
-        <h3>Software Development</h3>
-        <div class="chip-row">
-          <span class="chip slate">C#</span>
-          <span class="chip slate">.NET / ASP.NET MVC</span>
-          <span class="chip slate">SQL</span>
-          <span class="chip slate">Angular / TypeScript</span>
-          <span class="chip slate">Unity</span>
-        </div>
-      </div>
-      <div class="skill-card c-gold" style="--icon-color:var(--gold);">
-        <h3>Tools</h3>
-        <div class="chip-row">
-          <span class="chip gold">WordPress</span>
-          <span class="chip gold">Canva</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="module section-scatter" id="projects">
-  <svg class="scatter s-proj-1 doodle teal" viewBox="0 0 30 30" stroke-width="2.6" aria-hidden="true">
-    <path d="M15 3l2.5 9.5L27 15l-9.5 2.5L15 27l-2.5-9.5L3 15l9.5-2.5z"/>
-  </svg>
-  <svg class="scatter s-proj-2 doodle plum" viewBox="0 0 50 50" stroke-width="2.6" aria-hidden="true">
-    <circle cx="25" cy="25" r="14"/>
-    <circle cx="25" cy="25" r="7"/>
-    <circle cx="25" cy="25" r="1.6" fill="currentColor" stroke="none"/>
-  </svg>
-  <svg class="scatter s-proj-3 doodle sky" viewBox="0 0 30 30" stroke-width="2.4" aria-hidden="true">
-    <path d="M6 3v24"/>
-    <path d="M6 4h16l-3 5 3 5H6z"/>
-  </svg>
-  <div class="wrap">
-    <div class="module-head">
-      <svg class="module-icon doodle gold" viewBox="0 0 64 64" stroke-width="2.6">
-        <path d="M14 14h12c0-4 3-6 6-6s6 2 6 6h12v12c4 0 6 3 6 6s-2 6-6 6v12H38c0 4-3 6-6 6s-6-2-6-6H14V38c-4 0-6-3-6-6s2-6 6-6z"/>
+      <svg class="amb" viewBox="0 0 30 30" style="bottom:16%; left:6%; width:24px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--lilac)" d="M15 2v26M2 15h26"/>
       </svg>
-      <span class="module-num">03</span>
-      <h2 class="module-title">Selected Projects</h2>
-      <span class="status-pill">In progress</span>
-    </div>
-    <p class="module-sub">A sample of programs delivered end-to-end, from content design to system delivery.</p>
-
-    <div class="project-grid">
-      <div class="project-card" style="border-left:4px solid var(--teal);">
-        <div class="project-top">
-          <h3>NBQ Bank Compliance &amp; Branch Training</h3>
-          <span class="project-stack">Articulate 360 · Totara LMS · SCORM</span>
-        </div>
-        <p>End-to-end corporate training solution for National Bank of Umm Al Quwain — compliance modules, branch onboarding content, assessments, and full LMS reporting for management review.</p>
-      </div>
-      <div class="project-card" style="border-left:4px solid var(--coral);">
-        <div class="project-top">
-          <h3>Training Simulation System — Ministry of Defense (CR&amp;D)</h3>
-          <span class="project-stack">C# · Unity</span>
-        </div>
-        <p>Interactive simulation tool for real-world training scenarios, built with subject matter experts to model scenario-based learning environments.</p>
-      </div>
-      <div class="project-card" style="border-left:4px solid var(--sky);">
-        <div class="project-top">
-          <h3>CRM System — Orel IT</h3>
-          <span class="project-stack">Angular · TypeScript · HTML · CSS</span>
-        </div>
-        <p>Customer relationship management application built with a cross-functional team, translating business requirements into functional workflows.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="module section-scatter" id="education">
-  <svg class="scatter s-edu-1 doodle gold" viewBox="0 0 36 36" stroke-width="2.6" aria-hidden="true">
-    <path d="M18 4l4 8 9 1-6.5 6 1.5 9-8-4.5-8 4.5 1.5-9L5 13l9-1z"/>
-  </svg>
-  <svg class="scatter s-edu-2 doodle coral" viewBox="0 0 24 24" stroke-width="2.6" aria-hidden="true">
-    <path d="M12 2l1.8 7.4L21 12l-7.2 2.6L12 22l-1.8-7.4L3 12l7.2-2.6z"/>
-  </svg>
-  <svg class="scatter s-edu-3 doodle plum" viewBox="0 0 34 34" stroke-width="2.4" aria-hidden="true">
-    <rect x="4" y="20" width="26" height="6" rx="1.5" transform="rotate(-4 17 23)"/>
-    <rect x="5" y="12" width="24" height="6" rx="1.5" transform="rotate(3 17 15)"/>
-    <rect x="6" y="4" width="22" height="6" rx="1.5"/>
-  </svg>
-  <div class="wrap">
-    <div class="module-head">
-      <svg class="module-icon doodle teal" viewBox="0 0 64 64" stroke-width="2.6">
-        <path d="M32 13L5 26l27 12 27-12z"/>
-        <path d="M17 32v11c0 4 7 8 15 8s15-4 15-8V32"/>
-        <path d="M58 26v15"/>
+      <svg class="amb" viewBox="0 0 40 40" style="bottom:30%; right:22%; width:20px;" stroke-width="2.4">
+        <circle class="doodle" style="stroke:var(--mint)" cx="20" cy="20" r="14"/>
       </svg>
-      <span class="module-num">04</span>
-      <h2 class="module-title">Education</h2>
-      <span class="status-pill">In progress</span>
-    </div>
-    <div class="edu-row">
-      <div>
-        <p class="edu-degree">BSc (Hons) Software Engineering — Second Class Upper Division</p>
-        <p class="edu-school">University of Plymouth, UK</p>
+      <div class="slide-inner">
+        <p class="eyebrow">Right now</p>
+        <h1 class="slide-title">Building training for a bank where accuracy matters.</h1>
+        <p class="slide-body">At ZEMYD Marketing Consultancy, I create e-learning content and support Totara LMS delivery for National Bank of Umm Al Quwain's compliance and branch training — turning complex requirements into clear, engaging, and practical learning experiences from concept to completion.</p>
+        <div class="status-row">
+          <span class="status-pill">In progress</span>
+          <span class="now-loc">Sharjah, UAE</span>
+        </div>
       </div>
-      <span class="edu-date">2017 — 2021</span>
-    </div>
-    <div class="edu-row">
-      <div>
-        <p class="edu-degree">Diploma in Information Technology</p>
-        <p class="edu-school">ESOFT Metro Campus, Colombo</p>
-      </div>
-      <span class="edu-date">2016 — 2017</span>
-    </div>
-    <p class="module-sub" style="margin-top:24px;">Languages: English, Sinhala</p>
-  </div>
-</section>
+    </section>
 
-<section class="module contact section-scatter" id="contact">
-  <svg class="scatter s-contact-1 doodle sky" viewBox="0 0 32 32" stroke-width="2.6" aria-hidden="true">
-    <path d="M4 20c6 4 10-10 18-6"/>
-    <path d="M4 26c6 4 10-10 18-6"/>
-  </svg>
-  <svg class="scatter s-contact-2 doodle plum" viewBox="0 0 46 46" stroke-width="2.6" aria-hidden="true">
-    <path d="M23 40c-9-7-16-13-16-21a9 9 0 0 1 16-6 9 9 0 0 1 16 6c0 8-7 14-16 21z"/>
-  </svg>
-  <svg class="scatter s-contact-3 doodle teal" viewBox="0 0 30 30" stroke-width="2.4" aria-hidden="true">
-    <path d="M4 6h22v14H12l-6 5v-5H4z"/>
-    <path d="M9 12h12M9 16h8"/>
-  </svg>
-  <div class="wrap">
-    <div class="module-head">
-      <svg class="module-icon doodle gold" viewBox="0 0 64 64" stroke-width="2.6">
-        <path d="M6 30L58 8 36 58l-8-20-14-8z"/>
-        <path d="M28 38l30-30"/>
+    <!-- Slide 6: Contact -->
+    <section class="slide" id="s6">
+      <svg class="amb" viewBox="0 0 40 40" style="top:20%; right:10%; width:36px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--mint)" d="M6 22c8 4 12-16 20-14"/>
+        <path class="doodle" style="stroke:var(--mint)" d="M22 4l4 2-2 4"/>
       </svg>
-      <span class="module-num">05</span>
-      <h2 class="module-title">Contact</h2>
-      <span class="status-pill">In progress</span>
-    </div>
-    <p class="module-sub">Open to e-learning development, LMS specialist, and instructional design roles.</p>
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:sakuniamanda1@gmail.com">
-        <svg class="contact-icon doodle teal" viewBox="0 0 24 24" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
-        <span class="contact-label">Email</span>
-        <span class="contact-value">sakuniamanda1@gmail.com</span>
-      </a>
-      <a class="contact-card" href="tel:+971545342554">
-        <svg class="contact-icon doodle coral" viewBox="0 0 24 24" stroke-width="2.2"><path d="M4 3c1 5 3 9 6 12s7 5 12 6c1 .2 1.3-.4 1-1l-2-4c-.3-.6-1-.8-1.6-.5l-2.4 1.2c-2-1.3-3.8-3.1-5.1-5.1L13.3 9c.3-.6.1-1.3-.5-1.6L8.8 5.4C8.4 4.5 8.7 4 5 3z"/></svg>
-        <span class="contact-label">Phone</span>
-        <span class="contact-value">+971 54 534 2554</span>
-      </a>
-      <div class="contact-card" style="cursor:default;">
-        <svg class="contact-icon doodle sky" viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 22s7-7.5 7-13a7 7 0 0 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.6"/></svg>
-        <span class="contact-label">Location</span>
-        <span class="contact-value">Sharjah, UAE</span>
+      <svg class="amb" viewBox="0 0 30 30" style="bottom:14%; left:7%; width:26px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--coral)" d="M15 27c-8-6-13-11-13-17a7 7 0 0 1 13-4 7 7 0 0 1 13 4c0 6-5 11-13 17z"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 40 40" style="top:16%; left:6%; width:26px;" stroke-width="2.4">
+        <path class="doodle" style="stroke:var(--sun)" d="M20 4c6 3 10 8 10 14s-4 11-10 14c-6-3-10-8-10-14s4-11 10-14z"/>
+      </svg>
+      <svg class="amb" viewBox="0 0 40 40" style="bottom:28%; right:6%; width:24px;" stroke-width="2.6">
+        <path class="doodle" style="stroke:var(--lilac)" d="M20 5l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+      </svg>
+      <div class="slide-inner">
+        <p class="eyebrow">Let's talk</p>
+        <h1 class="slide-title">Got training that needs to actually work?</h1>
+        <div class="contact-links">
+          <a class="clink" href="mailto:sakuniamanda1@gmail.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
+            sakuniamanda1@gmail.com
+          </a>
+          <a class="clink" href="tel:+971545342554">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 3c1 5 3 9 6 12s7 5 12 6c1 .2 1.3-.4 1-1l-2-4c-.3-.6-1-.8-1.6-.5l-2.4 1.2c-2-1.3-3.8-3.1-5.1-5.1L13.3 9c.3-.6.1-1.3-.5-1.6L8.8 5.4C8.4 4.5 8.7 4 5 3z"/></svg>
+            +971 54 534 2554
+          </a>
+        </div>
+        <p class="closing-note">Open to E-Learning Developer, LMS Specialist, and Instructional Design roles.</p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <svg class="footer-doodle doodle gold" viewBox="0 0 140 16" stroke-width="2.6" preserveAspectRatio="none">
-    <path d="M2 8c10-6 18 6 28 0s18-6 28 0 18 6 28 0 18-6 26 0"/>
-  </svg>
-  Amanda Kavirathna — E-Learning Developer &amp; LMS Specialist
-</footer>
+  </div>
+
+  <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="nav-btn nav-next" id="nextBtn" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+
+  <div class="dots" id="dots"></div>
+</div>
 
 <script>
-  // Scroll progress bar
-  const fill = document.getElementById('progressFill');
-  function updateProgress(){
-    const h = document.documentElement;
-    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    fill.style.width = scrolled + '%';
+  const slidesEl = document.getElementById('slides');
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const dotsEl = document.getElementById('dots');
+  for(let i=0;i<total;i++){
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=>goTo(i));
+    dotsEl.appendChild(d);
   }
-  document.addEventListener('scroll', updateProgress);
-  updateProgress();
+  const dots = document.querySelectorAll('.dot');
 
-  // Module nav + completion states
-  const modules = document.querySelectorAll('.module');
-  const navButtons = document.querySelectorAll('.module-nav button');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const curNum = document.getElementById('curNum');
+  const railFill = document.getElementById('railFill');
 
-  navButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.getElementById(btn.dataset.target).scrollIntoView({behavior:'smooth'});
-    });
+  function render(){
+    slidesEl.style.transform = 'translateX(-' + (current*100) + 'vw)';
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    curNum.textContent = String(current+1).padStart(2,'0');
+    railFill.style.width = (((current+1)/total)*100) + '%';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total-1;
+  }
+
+  function goTo(i){
+    current = Math.max(0, Math.min(total-1, i));
+    render();
+  }
+
+  prevBtn.addEventListener('click', ()=>goTo(current-1));
+  nextBtn.addEventListener('click', ()=>goTo(current+1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
   });
 
-  const statusLabels = {
-    hero:'', experience:'In progress', skills:'In progress',
-    projects:'In progress', education:'In progress', contact:'In progress'
-  };
+  // basic touch swipe
+  let touchStartX = null;
+  document.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e)=>{
+    if(touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+    touchStartX = null;
+  });
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      const id = entry.target.id;
-      const navBtn = document.querySelector('.module-nav button[data-target="'+id+'"]');
-      const pill = entry.target.querySelector('.status-pill');
+  // flip cards
+  document.querySelectorAll('.flip-card').forEach(card=>{
+    card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  });
 
-      if(entry.boundingClientRect.top < window.innerHeight * 0.4){
-        entry.target.classList.add('is-complete');
-        if(pill) pill.textContent = 'Completed';
-        if(navBtn) navBtn.classList.add('done');
-      }
-
-      if(entry.isIntersecting){
-        navButtons.forEach(b=>b.classList.remove('active'));
-        if(navBtn) navBtn.classList.add('active');
-      }
-    });
-  }, {threshold:[0, 0.3, 0.6], rootMargin:'-10% 0px -10% 0px'});
-
-  modules.forEach(m=>observer.observe(m));
+  render();
 </script>
 
 </body>
