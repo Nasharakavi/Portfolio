@@ -24,18 +24,19 @@
     --mono:'IBM Plex Mono', monospace;
   }
   *{box-sizing:border-box;}
-  html,body{height:100%;}
+  html,body{height:100%; width:100%; max-width:100%; overflow-x:hidden;}
   body{
     margin:0; background:var(--bg); color:var(--ink);
     font-family:var(--body); overflow:hidden;
     -webkit-font-smoothing:antialiased;
+    overflow-wrap:break-word; word-break:break-word;
   }
   a{color:inherit;}
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important; transition:none !important;}
   }
 
-  .deck{position:relative; height:100vh; width:100vw; overflow:hidden;}
+  .deck{position:relative; height:100vh; width:100vw; max-width:100%; overflow:hidden;}
 
   .topbar{
     position:fixed; top:0; left:0; right:0; z-index:20;
@@ -67,11 +68,12 @@
     transition:transform .65s cubic-bezier(.65,0,.35,1);
   }
   .slide{
-    min-width:100vw; height:100vh; flex-shrink:0;
+    width:100vw; flex:0 0 100vw; height:100vh;
     display:flex; align-items:flex-start; justify-content:center;
     padding:128px 8vw 60px;
     position:relative;
-    overflow-y:auto;
+    overflow-x:hidden; overflow-y:auto;
+    box-sizing:border-box;
   }
   @media (max-width:680px){
     .slide{padding:96px 6vw 130px;}
@@ -316,17 +318,17 @@
       <div class="slide-inner">
         <p class="eyebrow">How I think</p>
         <h1 class="slide-title">Two lenses, one brain.</h1>
-        <p class="slide-body">Most instructional designers learn the tools. I built tools like these before I ever used one to teach.</p>
+        <p class="slide-body">My foundation is in Software Development, which gives me a different perspective on creating E-learning.</p>
         <div class="lens-grid">
           <div class="lens eng">
             <span class="lens-label">The Engineer</span>
             <h3>5+ years writing the systems</h3>
-            <p>C#, .NET, SQL, Angular, Unity. I don't just click around an LMS — I understand what's actually happening when a course fails to launch or a report won't generate.</p>
+            <p>C#, .NET, SQL, Angular, Unity. I work beyond the LMS interface, combining e-learning knowledge with technical problem-solving.</p>
           </div>
           <div class="lens des">
             <span class="lens-label">The Designer</span>
-            <h3>2+ years designing what sticks</h3>
-            <p>Compliance modules, onboarding, assessments — built in Articulate 360 and delivered through Totara, for people who don't have time to sit through bad training.</p>
+            <h3>2+ years turning content into engaging learning </h3>
+            <p>Compliance modules, onboarding, and assessments — designed in Articulate 360 and delivered through Totara to make learning clear, engaging, and effective.</p>
           </div>
         </div>
       </div>
@@ -395,7 +397,7 @@
           <p>We transform complex compliance requirements into clear, engaging digital learning experiences that employees can actually understand and apply.</p>
           <p>Our compliance training covers topics such as Anti-Money Laundering (AML), Money Laundering, and Terrorist Financing, turning detailed policies and regulatory requirements into structured, interactive e-learning modules.</p>
           <p>From content structure and instructional design to Articulate Storyline development, interactions, assessments, audio, animations, and SCORM integration, we build training that is easy to navigate, engaging to complete, and ready to deploy through an LMS.</p>
-          <p>The goal is simple: make mandatory compliance training feel less like a requirement and more like learning that sticks.</p>
+          <p>The goal is simple: Turn mandatory Compliance Training into engaging learning that employees remember and apply.</p>
         </div>
 
         <div class="nbq-timeline">
@@ -403,7 +405,7 @@
             <span class="nbq-year-label">2024</span>
             <h3>Compliance Training — AML &amp; Regulatory</h3>
             <p>Built and launched regulatory compliance and branch-level onboarding modules in Articulate 360, with assessments to verify understanding, not just attendance. Set up full Totara LMS delivery — enrollments, permissions, tracking, and completion reporting from day one.</p>
-            <div class="nbq-tag-row"><span class="nbq-tag">Articulate 360</span><span class="nbq-tag">Totara LMS</span><span class="nbq-tag">SCORM</span></div>
+            <div class="nbq-tag-row"><span class="nbq-tag">Articulate 360</span><span class="nbq-tag">Totara LMS</span><span class="nbq-tag">AML</span></div>
           </div>
           <div class="nbq-year" style="--yr-color:var(--sun);">
             <span class="nbq-year-label">2025</span>
@@ -466,7 +468,7 @@
               </div>
               <div class="flip-face flip-back">
                 <small>Answer</small>
-                <p>Trained in Sri Lanka. Now building compliance training in the UAE.</p>
+                <p>Trained in Sri Lanka. Now building E-Learning Content in the UAE.</p>
               </div>
             </div>
           </div>
@@ -487,7 +489,7 @@
       </svg>
       <div class="slide-inner">
         <p class="eyebrow">Right now</p>
-        <h1 class="slide-title">Building training for a bank where accuracy matters.</h1>
+        <h1 class="slide-title">Building Digital Learning Experiences for the Banking Industry</h1>
         <p class="slide-body">At ZEMYD Marketing Consultancy, I create e-learning content and support Totara LMS delivery for National Bank of Umm Al Quwain's compliance and branch training — turning complex requirements into clear, engaging, and practical learning experiences from concept to completion.</p>
         <div class="status-row">
           <span class="status-pill">In progress</span>
