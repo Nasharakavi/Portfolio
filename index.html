@@ -73,6 +73,9 @@
     position:relative;
     overflow-y:auto;
   }
+  @media (max-width:680px){
+    .slide{padding:96px 6vw 130px;}
+  }
 
   .slide-inner{max-width:920px; width:100%; position:relative; z-index:2;}
 
@@ -82,11 +85,16 @@
   }
   h1.slide-title{
     font-family:var(--display); font-weight:700;
-    font-size:clamp(2rem, 5vw, 3.4rem); line-height:1.1;
+    font-size:clamp(1.6rem, 6.5vw, 3.4rem); line-height:1.15;
     margin:0 0 22px; letter-spacing:-.01em;
   }
   .slide-body{
-    color:var(--ink-soft); font-size:1.08rem; max-width:640px; margin:0 0 8px;
+    color:var(--ink-soft); font-size:1.08rem; max-width:640px; margin:0 0 8px; line-height:1.55;
+  }
+  @media (max-width:680px){
+    .eyebrow{font-size:11px; margin-bottom:12px;}
+    h1.slide-title{margin-bottom:16px;}
+    .slide-body{font-size:.94rem;}
   }
 
   /* ---- nav controls ---- */
@@ -104,8 +112,8 @@
   .nav-prev{left:26px;}
   .nav-next{right:26px;}
   @media (max-width:680px){
-    .nav-btn{width:42px; height:42px; font-size:16px;}
-    .nav-prev{left:12px;} .nav-next{right:12px;}
+    .nav-btn{width:44px; height:44px; font-size:16px; top:auto; bottom:64px; transform:none;}
+    .nav-prev{left:14px;} .nav-next{right:14px;}
   }
 
   .dots{
@@ -121,6 +129,7 @@
   /* ---- ambient doodles ---- */
   .amb{position:absolute; pointer-events:none; opacity:.5; z-index:1;}
   .doodle{fill:none; stroke-linecap:round; stroke-linejoin:round;}
+  @media (max-width:680px){ .amb{display:none;} }
 
   /* ===== Slide 0 — Cover ===== */
   .cover-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
@@ -352,7 +361,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--lilac)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
             </div>
             <h3>LMS systems that run themselves</h3>
-            <p>Full Totara administration — enrollments, permissions, SCORM delivery, and reporting that management actually reads.</p>
+            <p>Totara administration — enrollments, permissions, SCORM delivery, and reporting that management actually reads.</p>
           </div>
           <div class="build-card">
             <div class="dot-icon" style="background:rgba(255,209,102,.15);">
@@ -392,8 +401,8 @@
         <div class="nbq-timeline">
           <div class="nbq-year" style="--yr-color:var(--mint);">
             <span class="nbq-year-label">2024</span>
-            <h3> Compliance Training — AML &amp; Regulatory</h3>
-            <p> Built and launched regulatory compliance and branch-level onboarding modules in Articulate 360, with assessments to verify understanding, not just attendance. Set up full Totara LMS delivery — enrollments, permissions, tracking, and completion reporting from day one.</p>
+            <h3>Compliance Training — AML &amp; Regulatory</h3>
+            <p>Built and launched regulatory compliance and branch-level onboarding modules in Articulate 360, with assessments to verify understanding, not just attendance. Set up full Totara LMS delivery — enrollments, permissions, tracking, and completion reporting from day one.</p>
             <div class="nbq-tag-row"><span class="nbq-tag">Articulate 360</span><span class="nbq-tag">Totara LMS</span><span class="nbq-tag">SCORM</span></div>
           </div>
           <div class="nbq-year" style="--yr-color:var(--sun);">
@@ -508,7 +517,7 @@
         <div class="contact-links">
           <a class="clink" href="mailto:sakuniamanda1@gmail.com">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
-            sakuniamanda1@gmail.com 
+            sakuniamanda1@gmail.com
           </a>
           <a class="clink" href="tel:+971545342554">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 3c1 5 3 9 6 12s7 5 12 6c1 .2 1.3-.4 1-1l-2-4c-.3-.6-1-.8-1.6-.5l-2.4 1.2c-2-1.3-3.8-3.1-5.1-5.1L13.3 9c.3-.6.1-1.3-.5-1.6L8.8 5.4C8.4 4.5 8.7 4 5 3z"/></svg>
